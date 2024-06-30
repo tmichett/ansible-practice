@@ -19,13 +19,13 @@ cd ~/Github/ansible-practice/Containers
 
 Build and Tag the Container Image
 ````
-podman build -t systemd-test .
+podman build -t systemd-ansible-server .
 ````
 
 Running a Container
 
 ````
-podman run -d -p 2222:22 --name servera localhost/systemd-test:latest
+podman run -d -p 2222:22 --name servera localhost/systemd-ansible-server:latest
 ````
 
 Cleaning Up
