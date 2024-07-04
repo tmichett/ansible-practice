@@ -1,7 +1,7 @@
 FROM arm64v8/fedora:40
 
 # Installing https also installs systemd.
-RUN dnf -y install passwd procps less vim tree openssh-server
+RUN dnf -y install passwd procps less vim tree openssh-server systemd iputils openssh-clients iproute  crontabs sudo initscripts selinux-policy && dnf clean all 
 
 # Create SSH User (Ansible User)
 RUN /usr/sbin/useradd  ansible-user
