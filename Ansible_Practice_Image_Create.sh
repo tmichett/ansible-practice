@@ -1,5 +1,6 @@
 #!/bin/bash
 # Travis Michette <tmichett@redhat.com>
+## Needs to be run with SUDO
 
 printf '\e[1;34m%-6s\e[m' "================================================================"
 echo ""

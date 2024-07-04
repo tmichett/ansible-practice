@@ -1,7 +1,7 @@
 FROM fedora:40
 
 # Installing https also installs systemd.
-RUN dnf -y install passwd procps less vim tree openssh-server
+RUN dnf -y install passwd procps less vim tree openssh-server systemd iputils openssh-clients iproute  crontabs sudo initscripts selinux-policy && dnf clean all 
 
 # Create SSH User (Ansible User)
 RUN /usr/sbin/useradd  ansible-user
@@ -13,5 +13,8 @@ STOPSIGNAL SIGRTMIN+3
 EXPOSE 80
 EXPOSE 443
 EXPOSE 22
+VOLUME ["/sys/fs/cgroup"]
+USER root
+RUN ssh-keygen -A
 
-CMD [ "/sbin/init" ]
+CMD ["/sbin/init"]
