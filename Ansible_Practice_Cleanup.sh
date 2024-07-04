@@ -10,17 +10,17 @@ echo ""
 printf '\e[1;34m%-6s\e[m' "================================================================"
 echo ""
 ## ServerA Removal
-podman rm -f servera
+sudo podman rm -f servera
 
 ## ServerB Removal
-podman rm -f serverb
+sudo podman rm -f serverb
 
 ## ServerC Launching
-podman rm -f serverc
+sudo podman rm -f serverc
 
 
 ## Podman Network Removal
-podman network rm ansiblenet
+sudo podman network rm ansiblenet
 
 printf '\e[1;34m%-6s\e[m' "================================================================"
 echo ""
