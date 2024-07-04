@@ -33,13 +33,13 @@ echo ""
 
 printf '\e[1;34m%-6s\e[m' "================================================================"
 echo ""
-printf '\e[1;34m%-6s\e[m' "Server A IP Address: "
+printf '\e[1;31m%-6s\e[m' "Server A IP Address: "
 podman inspect -f '{{.NetworkSettings.Networks.ansiblenet.IPAddress}}' servera
 echo ""
-printf '\e[1;34m%-6s\e[m' "Server B IP Address: "
+printf '\e[1;32m%-6s\e[m' "Server B IP Address: "
 podman inspect -f '{{.NetworkSettings.Networks.ansiblenet.IPAddress}}' serverb
 echo ""
-printf '\e[1;34m%-6s\e[m' "Server C IP Address: "
+printf '\e[1;36m%-6s\e[m' "Server C IP Address: "
 podman inspect -f '{{.NetworkSettings.Networks.ansiblenet.IPAddress}}' serverc
 echo ""
 printf '\e[1;34m%-6s\e[m' "================================================================"
