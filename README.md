@@ -31,7 +31,17 @@ git clone https://github.com/tmichett/ansible-practice.git
 cd ~/Github/ansible-practice/Containers
 ````
 
+> [!IMPORTANT]
+> The **Setup_SSH_Config.sh** script will create an SSH config file in the users directory. This file is created to allow users to easily SSH to systems by the name and port-forwarding that has been setup. ServerA => 2222, ServerB => 2322, ServerC => 2422. This greatly simplifies the connection to the systems as well as the inventory file. An alternate inventory file has been created in the event that you choose not to change SSH client configurations.
+
+4. Creating a custom SSH Config File
+````
+./Setup_SSH_Config.sh
+````
+
+
 ## Installing and Using the Ansible Practice Containers
+
 
 
 ### Using the Scripts to Setup and Run the Lab Machines (Manually Creating the Image)
