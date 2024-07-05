@@ -1,0 +1,41 @@
+---
+- name: Cleanup entries in /etc/hosts for Ansible-Practice
+  hosts: localhost
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Collect IP Address for ServerA
+      ansible.builtin.shell: ./serverA_ip.sh
+      register: servera
+
+    - name: Print IP Address of ServerA
+      debug:
+        var: servera
+
+    - name: Collect IP Address for ServerB
+      ansible.builtin.shell: ./serverB_ip.sh
+      register: serverb
+
+    - name: Print IP Address of ServerB
+      debug:
+        var: serverb
+
+    - name: Collect IP Address for ServerC
+      ansible.builtin.shell: ./serverC_ip.sh
+      register: serverc
+
+    - name: Print IP Address of ServerC
+      debug:
+        var: serverc
+
+    - name: Update /etc/hosts file
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: |
+          servera {{ servera.stdout }}
+          serverb {{ serverb.stdout }}
+          serverc {{ serverc.stdout }}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - Ansible Container Entries"
+        state: absent
+
+        

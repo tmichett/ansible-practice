@@ -43,9 +43,36 @@ cd ~/Github/ansible-practice/Containers
 ## Installing and Using the Ansible Practice Containers
 
 
+### Fully-Autmoated Installer
+
+It is possible to fully install and automate the process of setting up Server container images for practicing running and developing Ansible playbooks. The following steps allow complete automation of these items. These steps assume that you have already cloned the repository and completed the initial setup.
+
+1. Install the Scripts and Resource files to /opt/ansible-practice
+```` 
+./Install_Ansible_Practice.sh
+````
+
+2. Launch the **Ansible_Practice.sh** script
+````
+./Ansible_Practice.sh
+````
+> [!NOTE]
+> This launches three (3) containers ServerA, ServerB, ServerC and outputs the IP Addresses of each. In order to reference the systems by name, you can update /etc/hosts with the custom entries and you can also leverage the **Setup_SSH_Config.sh** script to create a localized SSH client configuration file.
+
+3. Cleanup running containers and Ansible container network
+```` 
+./Ansible_Practice_Cleanup.sh
+```` 
+
+
+
+
 
 ### Using the Scripts to Setup and Run the Lab Machines (Manually Creating the Image)
 
+It is possible to run scripts individually. This is done if you want to build the container image from scratch and possibly if you want to modify or change the container image. The scripts can be executed individually from the Github repository, or they can be exectuted at any time if you completed the **Install_Ansible_Practice.sh** script from the **/opt/ansible-practice** directory.
+
+The instructions assume you are in either the **~/Github/ansible-practice** directory or **/opt/ansible-practice** directory.
 
 1. Building the Container Image
 ````
@@ -64,7 +91,7 @@ sudo ./Ansible_Practice_Cleanup.sh
 
 ### Manually Building and Running the Lab Machines
 
-These instructions allow for manually building and overriding the containerized instructions manually. It is possible at this stage to easiy change the Containerfile in order to have different base images for the test containers.
+These instructions allow for manually building and overriding the containerized instructions manually. It is possible at this stage to easiy change the Containerfile in order to have different base images for the test containers. You must be in the **~/Github/ansible-practice** directory or **/opt/ansible-practice** directory.
 
 **Building the Container Image from Containerfile**
 
