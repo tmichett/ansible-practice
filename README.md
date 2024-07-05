@@ -42,8 +42,10 @@ cd ~/Github/ansible-practice/Containers
 
 ## Installing and Using the Ansible Practice Containers
 
+There are a number of ways to use this repository. They are documented below. The easiest way to use this project is following the **Fully-Automated Installer instructions**. There are also some helper scripts created to allow an SSH Client configuration file to be created as well as scripts to obtain the IP addresses of each of the "server" containers. Finally, to make things super easy, there are playbooks that have been created to update the **/etc/hosts** file allowing access to the running containers by the short hostname (servera, serverb, or serverc). The two playbooks can both add the entries and clean entries up in the **/etc/hosts** file.
 
-### Fully-Autmoated Installer
+
+### Fully-Automated Installer
 
 It is possible to fully install and automate the process of setting up Server container images for practicing running and developing Ansible playbooks. The following steps allow complete automation of these items. These steps assume that you have already cloned the repository and completed the initial setup.
 
