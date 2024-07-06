@@ -1,0 +1,19 @@
+---
+- name: Testing Connectivity
+  hosts: all
+  become: true
+  tasks:
+    - name: Use Ping to test basic connectivity
+      ansible.builtin.ping:
+    
+    - name: Print Fact
+      ansible.builtin.debug:
+        msg: Hello from {{ ansible_facts['hostname'] }} containername, I am {{ inventory_hostname }}
+
+    - name: Capture Username Running this
+      ansible.builtin.shell: whoami
+      register: user_name
+
+    - name: Display Captured Username
+      ansible.builtin.debug:
+        msg: The user running the tasks in this playbook is {{ user_name['stdout'] }}
