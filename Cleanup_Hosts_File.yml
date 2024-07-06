@@ -32,9 +32,9 @@
       ansible.builtin.blockinfile:
         path: /etc/hosts
         block: |
-          servera {{ servera.stdout }}
-          serverb {{ serverb.stdout }}
-          serverc {{ serverc.stdout }}
+          {{ servera.stdout }} servera
+          {{ serverb.stdout }} serverb
+          {{ serverc.stdout }} serverc
         marker: "# {mark} ANSIBLE MANAGED BLOCK - Ansible Container Entries"
         state: absent
 
