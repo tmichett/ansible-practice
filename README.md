@@ -13,6 +13,11 @@ The Fedora Remix already has the **Ansible Developer** tools installed which inc
 > Fedora Remix ISO: https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link
 
 
+The containers are Fedora 40 images with SystemD and a user called **ansible-user** already created with a password of **password**. This **ansible-user** is already in a SUDOERS file that has full SUDO acccess without a password. The only thing needing done is to transfer SSH keys to the containers. There is a script for that purpose **Setup_SSH_Keys_Container.sh**.
+
+Additionally, because the containers change, any SSH should be done with options to allow any of the keys and not write keys to KNOWN_HOSTS. I've created an **ansible.cfg** file which uses **-o "UserKnownHostsFile=/dev/null" -o StrictHostKeyChecking=accept-new** SSH options to eliminate any hassle with the SSH keys. There is also a playbook to create an SSH Config file which should have some SSH options and allow accessing containers via port-forward with SSH.
+
+
 ## Preliminary Steps
 
 The first thing to do is to create the directory for the repository and clone down the contents. After that has been completed, it is possible to install the *ansible-practice* system using scripts and leveraging pre-built containers or you can manually build your own container image using the provided scripts. Finally, there is a demonstration to do everything by hand and generate a SERVERA system.
@@ -34,10 +39,11 @@ cd ~/Github/ansible-practice/Containers
 > [!IMPORTANT]
 > The **Setup_SSH_Config.sh** script will create an SSH config file in the users directory. This file is created to allow users to easily SSH to systems by the name and port-forwarding that has been setup. ServerA => 2222, ServerB => 2322, ServerC => 2422. This greatly simplifies the connection to the systems as well as the inventory file. An alternate inventory file has been created in the event that you choose not to change SSH client configurations.
 
-4. Creating a custom SSH Config File
+4. Creating a custom SSH Config File **(Not needed if you setup /etc/hosts)**
 ````
 ./Setup_SSH_Config.sh
 ````
+
 
 
 ## Installing and Using the Ansible Practice Containers
@@ -56,14 +62,38 @@ It is possible to fully install and automate the process of setting up Server co
 
 2. Launch the **Ansible_Practice.sh** script
 ````
-./Ansible_Practice.sh
+/opt/ansible-practice/Ansible_Practice.sh
 ````
 > [!NOTE]
 > This launches three (3) containers ServerA, ServerB, ServerC and outputs the IP Addresses of each. In order to reference the systems by name, you can update /etc/hosts with the custom entries and you can also leverage the **Setup_SSH_Config.sh** script to create a localized SSH client configuration file.
 
-3. Cleanup running containers and Ansible container network
+3. Setup the **/etc/hosts** file for playbooks
+````
+/opt/ansible-practice/Setup_ETC_Hosts.sh
+````
+
+4. Setup the SSH Keys on the Containers
+````
+/opt/ansible-practice/Setup_SSH_Keys_Container.sh
+````
+
+> [!TIP]
+> After disributing the SSH keys to the container, it is suggested to try the **Ansible_Test** folder playbooks to test connectivity as the **ansible-user** for SSH access via keys as well as testing for SUDO without a password. The **Connectivity_Test.yml** and **Connectivity_Test_Become.yml** can test all three (3) Server containers for access.
+
+
+**Cleaning up the Lab Environment**
+
+After you have completed with the lab environment, it is important to remove **/etc/hosts** entries and ensure the containers are stopped and the Podman **ansiblenetwork** has been removed and cleaned up. The **/etc/hosts** entries must be removed prior to cleaning up the containers.
+
+1. Cleanup of **/etc/hosts** needs completed before cleaning up containers
+````
+/opt/ansible-practice/Cleanup_ETC_Hosts.sh
+````
+
+
+2. Cleanup running containers and Ansible container network
 ```` 
-./Ansible_Practice_Cleanup.sh
+/opt/ansible-practice/Ansible_Practice_Cleanup.sh
 ```` 
 
 
