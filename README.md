@@ -128,17 +128,14 @@ These instructions allow for manually building and overriding the containerized 
 **Building the Container Image from Containerfile**
 
 1. Build and Tag the Container Image
-
 ```bash
 sudo podman build -t systemd-ansible-server .
 ```
 
 2. Running a Container [^1]
-
 ```bash
 sudo podman run --cap-add AUDIT_WRITE -P -d -p 2222:22 --network ansiblenet --name servera localhost/systemd-ansible-server:latest
 ```
-
 ```bash
 sudo podman inspect -f '{{.NetworkSettings.Networks.ansiblenet.IPAddress}}' servera 
 ```
