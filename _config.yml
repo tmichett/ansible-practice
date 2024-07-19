@@ -20,20 +20,20 @@
 
 title: Ansible Practice Lab
 email: travis@michettetech.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Ansible practice lab using container-based servers to manipulate with Ansible.
+description: Ansible practice lab using container-based servers to manipulate with Ansible. # this means to ignore newlines until "baseurl:"
+  
 #permalink: /website/jekyll/update/:year/:month/:day/:title
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/ansible-practice" # the subpath of your site, e.g. /blog
 url: "https://tmichett.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  tmichett
 
 # Build settings
-remote_theme: pages-themes/hacker@v0.2.0
+remote_theme: pages-themes/midnight@v0.2.0
 plugins:
   - jekyll-remote-theme
-  - jekyll-feed
+#  - jekyll-feed
 
-theme: jekyll-theme-hacker
+#theme: jekyll-theme-hacker
 
 # Exclude from processing.
 # The following items will not be processed, by default.
