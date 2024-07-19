@@ -9,8 +9,9 @@ This project does not install Ansible Content Navigator (**ansible-navigator**) 
 
 The Fedora Remix already has the **Ansible Developer** tools installed which includes the **ansible-navigator** command from upstream. It is also possible to use this demonstration on a Red Hat Enterprise Linux (RHEL) system as long as Podman is installed and you have the access to the Ansible Automation Platform packages. This does not changes the servers (ServerA, ServerB, ServerC) as these images are built with a Fedora 40 base image. If you want to change the end-systems that are being configured, it will be necessary to update the Containerfile with an appropriate base image and rebuild the container image.
 
-> [!TIP]
-> Fedora Remix ISO: [Google Drive - Fedora Remix ISO](https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link)
+```tip
+Fedora Remix ISO: [Google Drive - Fedora Remix ISO](https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link)
+```
 
 
 The containers are Fedora 40 images with SystemD and a user called **ansible-user** already created with a password of **password**. This **ansible-user** is already in a SUDOERS file that has full SUDO acccess without a password. The only thing needing done is to transfer SSH keys to the containers. There is a script for that purpose **Setup_SSH_Keys_Container.sh**.
