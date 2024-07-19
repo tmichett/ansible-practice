@@ -23,26 +23,26 @@ Additionally, because the containers change, any SSH should be done with options
 The first thing to do is to create the directory for the repository and clone down the contents. After that has been completed, it is possible to install the *ansible-practice* system using scripts and leveraging pre-built containers or you can manually build your own container image using the provided scripts. Finally, there is a demonstration to do everything by hand and generate a SERVERA system.
 
 1. Create a Github Repository Folder
-````
+```bash
 mkdir ~/Github/ ; cd ~/Github/ 
-````
+```
 
 2. Clone the repository
-````
+```bash
 git clone https://github.com/tmichett/ansible-practice.git
-````
+```
 3. Switch to the Correct Directory
-````
+```bash
 cd ~/Github/ansible-practice/Containers
-````
+```
 
 > [!IMPORTANT]
 > The **Setup_SSH_Config.sh** script will create an SSH config file in the users directory. This file is created to allow users to easily SSH to systems by the name and port-forwarding that has been setup. ServerA => 2222, ServerB => 2322, ServerC => 2422. This greatly simplifies the connection to the systems as well as the inventory file. An alternate inventory file has been created in the event that you choose not to change SSH client configurations.
 
 4. Creating a custom SSH Config File **(Not needed if you setup /etc/hosts)**
-````
+```bash
 ./Setup_SSH_Config.sh
-````
+```
 
 
 
@@ -56,26 +56,26 @@ There are a number of ways to use this repository. They are documented below. Th
 It is possible to fully install and automate the process of setting up Server container images for practicing running and developing Ansible playbooks. The following steps allow complete automation of these items. These steps assume that you have already cloned the repository and completed the initial setup.
 
 1. Install the Scripts and Resource files to /opt/ansible-practice
-```` 
+```bash
 ./Install_Ansible_Practice.sh
-````
+```
 
 2. Launch the **Ansible_Practice.sh** script
-````
+```bash
 /opt/ansible-practice/Ansible_Practice.sh
-````
+```
 > [!NOTE]
 > This launches three (3) containers ServerA, ServerB, ServerC and outputs the IP Addresses of each. In order to reference the systems by name, you can update /etc/hosts with the custom entries and you can also leverage the **Setup_SSH_Config.sh** script to create a localized SSH client configuration file.
 
 3. Setup the **/etc/hosts** file for playbooks
-````
+```bash
 /opt/ansible-practice/Setup_ETC_Hosts.sh
-````
+```
 
 4. Setup the SSH Keys on the Containers
-````
+```bash
 /opt/ansible-practice/Setup_SSH_Keys_Container.sh
-````
+```
 
 > [!TIP]
 > After disributing the SSH keys to the container, it is suggested to try the **Ansible_Test** folder playbooks to test connectivity as the **ansible-user** for SSH access via keys as well as testing for SUDO without a password. The **Connectivity_Test.yml** and **Connectivity_Test_Become.yml** can test all three (3) Server containers for access.
@@ -86,15 +86,15 @@ It is possible to fully install and automate the process of setting up Server co
 After you have completed with the lab environment, it is important to remove **/etc/hosts** entries and ensure the containers are stopped and the Podman **ansiblenetwork** has been removed and cleaned up. The **/etc/hosts** entries must be removed prior to cleaning up the containers.
 
 1. Cleanup of **/etc/hosts** needs completed before cleaning up containers
-````
+```bash
 /opt/ansible-practice/Cleanup_ETC_Hosts.sh
-````
+```
 
 
 2. Cleanup running containers and Ansible container network
-```` 
+```bash
 /opt/ansible-practice/Ansible_Practice_Cleanup.sh
-```` 
+```
 
 
 
@@ -107,19 +107,19 @@ It is possible to run scripts individually. This is done if you want to build th
 The instructions assume you are in either the **~/Github/ansible-practice** directory or **/opt/ansible-practice** directory.
 
 1. Building the Container Image
-````
+```bash
 sudo ./Ansible_Practice_Image_Create.sh
-````
+```
 
 2. Running the Lab Environment
-````
+```bash
 sudo ./Ansible_Practice_Setup.sh
-````
+```
 
 3. Cleaning up the Lab Environment
-````
+```bash
 sudo ./Ansible_Practice_Cleanup.sh
-````
+```
 
 ### Manually Building and Running the Lab Machines
 
@@ -128,24 +128,25 @@ These instructions allow for manually building and overriding the containerized 
 **Building the Container Image from Containerfile**
 
 1. Build and Tag the Container Image
-````
+
+```bash
 sudo podman build -t systemd-ansible-server .
-````
+```
 
 2. Running a Container [^1]
 
-````
+```bash
 sudo podman run --cap-add AUDIT_WRITE -P -d -p 2222:22 --network ansiblenet --name servera localhost/systemd-ansible-server:latest
-````
-+
-````
+```
+
+```bash
 sudo podman inspect -f '{{.NetworkSettings.Networks.ansiblenet.IPAddress}}' servera 
-````
+```
 
 3. Cleaning Up
-````
+```bash
 sudo podman rm -f servera
-````
+```
 
 
 
