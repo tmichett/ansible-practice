@@ -4,13 +4,13 @@ This project is meant to create Ansible containers to act as servers that will b
 
 The container image created is possible to run SystemD services and will run on a specified container network. In order to fully work properly, the containers must be run in privileged mode so that all the network access is provided. The easiest method to use the practice Ansible containers is from a Linux system and using the **Ansible_Practice.sh* script.
 
-This project does not install Ansible Content Navigator (**ansible-navigator**) or Ansible Core packages to the system and it is expected that is already completed on the system you are using for development. For simplicity, I have created a Fedora Remix that has all the Ansible development tools and container tools that will allow a full-blown lab environment to be created. The ISO can be downloaded from: https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link. A website of instructions can be found: [https://tmichett.github.io/ansible-practice/](https://tmichett.github.io/ansible-practice/)
+This project does not install Ansible Content Navigator (**ansible-navigator**) or Ansible Core packages to the system and it is expected that is already completed on the system you are using for development. For simplicity, I have created a Fedora Remix that has all the Ansible development tools and container tools that will allow a full-blown lab environment to be created. The ISO can be downloaded from: [Google Drive - Fedora Remix ISO](https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link). A website of instructions can be found: [https://tmichett.github.io/ansible-practice/](https://tmichett.github.io/ansible-practice/) which is tied to this [Gihub Project](https://github.com/tmichett/ansible-practice)
 
 
 The Fedora Remix already has the **Ansible Developer** tools installed which includes the **ansible-navigator** command from upstream. It is also possible to use this demonstration on a Red Hat Enterprise Linux (RHEL) system as long as Podman is installed and you have the access to the Ansible Automation Platform packages. This does not changes the servers (ServerA, ServerB, ServerC) as these images are built with a Fedora 40 base image. If you want to change the end-systems that are being configured, it will be necessary to update the Containerfile with an appropriate base image and rebuild the container image.
 
 > [!TIP]
-> Fedora Remix ISO: https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link
+> Fedora Remix ISO: [Google Drive - Fedora Remix ISO](https://drive.google.com/file/d/1D1apDwtcOEGIGDE9ZQYB8303nUvAdUxB/view?usp=drive_link)
 
 
 The containers are Fedora 40 images with SystemD and a user called **ansible-user** already created with a password of **password**. This **ansible-user** is already in a SUDOERS file that has full SUDO acccess without a password. The only thing needing done is to transfer SSH keys to the containers. There is a script for that purpose **Setup_SSH_Keys_Container.sh**.
